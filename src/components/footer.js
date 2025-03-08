@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Icon } from '@components/icons';
-import { socialMedia } from '@config';
+import { socialMedia, email } from '@config';
 
 const StyledFooter = styled.footer`
   ${({ theme }) => theme.mixins.flexCenter};
@@ -54,6 +54,11 @@ const Footer = () => (
   <StyledFooter>
     <StyledSocialLinks>
       <ul>
+        <li>
+          <a href={`mailto:${email}`} aria-label="Mail">
+            <Icon name="Mail" />
+          </a>
+        </li>
         {socialMedia &&
           socialMedia.map(({ name, url }, i) => (
             <li key={i}>

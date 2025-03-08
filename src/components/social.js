@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { socialMedia } from '@config';
+import { socialMedia, email } from '@config';
 import { Side } from '@components';
 import { Icon } from '@components/icons';
 
@@ -46,6 +46,11 @@ const StyledSocialList = styled.ul`
 const Social = ({ isHome }) => (
   <Side isHome={isHome} orientation="left">
     <StyledSocialList>
+      <li>
+        <a href={`mailto:${email}`} aria-label="Mail">
+          <Icon name="Mail" />
+        </a>
+      </li>
       {socialMedia &&
         socialMedia.map(({ url, name }, i) => (
           <li key={i}>
