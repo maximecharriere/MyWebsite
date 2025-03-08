@@ -1,26 +1,22 @@
 module.exports = {
-  email: 'brittany.chiang@gmail.com',
+  email: 'contact@maximecharriere.ch',
 
   socialMedia: [
     {
+      name: 'Linkedin',
+      url: 'https://www.linkedin.com/in/maximecharriere',
+    },
+    {
       name: 'GitHub',
-      url: 'https://github.com/bchiang7',
+      url: 'https://github.com/maximecharriere',
     },
     {
       name: 'Instagram',
-      url: 'https://www.instagram.com/bchiang7',
+      url: 'https://www.instagram.com/maximecharriere',
     },
     {
       name: 'Twitter',
-      url: 'https://twitter.com/bchiang7',
-    },
-    {
-      name: 'Linkedin',
-      url: 'https://www.linkedin.com/in/bchiang7',
-    },
-    {
-      name: 'Codepen',
-      url: 'https://codepen.io/bchiang7',
+      url: 'https://twitter.com/maximecharriere',
     },
   ],
 
@@ -44,7 +40,7 @@ module.exports = {
   ],
 
   colors: {
-    green: '#64ffda',
+    green: '#95d0a1',
     navy: '#0a192f',
     darkNavy: '#020c1b',
   },
