@@ -156,11 +156,20 @@ const StyledTabPanel = styled.div`
     }
   }
 
-  .range {
+  .subheading {
     margin-bottom: 25px;
     color: var(--light-slate);
     font-family: var(--font-mono);
     font-size: var(--fz-xs);
+
+    .range,
+    .type {
+      display: block;
+    }
+
+    .type {
+      display: block;
+    }
   }
 `;
 
@@ -178,6 +187,7 @@ const Jobs = () => {
               company
               location
               range
+              type
               url
             }
             html
@@ -273,7 +283,7 @@ const Jobs = () => {
           {jobsData &&
             jobsData.map(({ node }, i) => {
               const { frontmatter, html } = node;
-              const { title, url, company, range } = frontmatter;
+              const { title, url, company, range, type } = frontmatter;
 
               return (
                 <CSSTransition key={i} in={activeTabId === i} timeout={250} classNames="fade">
@@ -287,14 +297,17 @@ const Jobs = () => {
                     <h3>
                       <span>{title}</span>
                       <span className="company">
-                        &nbsp;@&nbsp;
+                        &nbsp;
                         <a href={url} className="inline-link">
-                          {company}
+                          @&nbsp;{company}
                         </a>
                       </span>
                     </h3>
 
-                    <p className="range">{range}</p>
+                    <div className="subheading">
+                      <span className="range">{range}</span>
+                      <span className="type">{type}</span>
+                    </div>
 
                     <div dangerouslySetInnerHTML={{ __html: html }} />
                   </StyledTabPanel>
