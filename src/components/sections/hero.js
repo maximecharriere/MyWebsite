@@ -72,7 +72,7 @@ const Hero = () => {
           rel="noreferrer">
           MSc in Circular Innovation and Sustainability
         </a>
-        , developping technological solutions with environmental impact !
+        , developping technological solutions with environmental impact ! 🤖🌱
       </p>
     </>
   );

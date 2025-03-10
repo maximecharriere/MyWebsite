@@ -22,7 +22,8 @@ const StyledAboutSection = styled.section`
 const StyledText = styled.div`
   ul.skills-list {
     display: grid;
-    grid-template-columns: repeat(2, minmax(140px, 200px));
+    grid-template-columns: ${props =>
+    props.columns === 1 ? '1fr' : 'repeat(2, minmax(140px, 200px))'};
     grid-gap: 0 10px;
     padding: 0;
     margin: 20px 0 0 0;
@@ -117,8 +118,6 @@ const About = () => {
     sr.reveal(revealContainer.current, srConfig());
   }, []);
 
-  const skills = ['JavaScript (ES6+)', 'TypeScript', 'React', 'Eleventy', 'Node.js', 'WordPress'];
-
   const ProfilePicture = (
     <div className="pp">
       <div className="pp-container">
@@ -145,38 +144,45 @@ const About = () => {
         <StyledText>
           <div>
             <p>
-              Hello! My name is Brittany and I enjoy creating things that live on the internet. My
-              interest in web development started back in 2012 when I decided to try editing custom
-              Tumblr themes — turns out hacking together a custom reblog button taught me a lot
-              about HTML &amp; CSS!
+              <span role="img" aria-label="waving hand">
+                👋
+              </span>{' '}
+              Hey there! I'm Maxime, a Swiss engineer who's obsessed with tech and deeply concerned
+              about the climate crisis. Since I was a kid, I've been fascinated by robotics and
+              building things that make life easier. And with the state of our planet, I decided to
+              go all in on sustainability — using my skills to create solutions that actually make a
+              difference.
             </p>
-
             <p>
-              Fast-forward to today, and I’ve had the privilege of working at{' '}
-              <a href="https://us.mullenlowe.com/">an advertising agency</a>,{' '}
-              <a href="https://starry.com/">a start-up</a>,{' '}
-              <a href="https://www.apple.com/">a huge corporation</a>, and{' '}
-              <a href="https://scout.camd.northeastern.edu/">a student-led design studio</a>. My
-              main focus these days is building accessible, inclusive products and digital
-              experiences at <a href="https://upstatement.com/">Upstatement</a> for a variety of
-              clients.
+              <span role="img" aria-label="magnifying glass">
+                🔍
+              </span>{' '}
+              What gets me excited?
+              <StyledText columns={1}>
+                <ul className="skills-list">
+                  <li>
+                    <b>Renewable Energy</b> (Solar, Battery &amp; Smart-grid)
+                  </li>
+                  <li>
+                    <b>Data Analysis &amp; AI for Sustainability</b>
+                  </li>
+                  <li>
+                    <b>Open-source, Ethical, &amp; Decentralized Projects</b>
+                  </li>
+                  <li>
+                    <b>…basically anything Clean-tech!</b>
+                  </li>
+                </ul>
+              </StyledText>
             </p>
-
             <p>
-              I also recently{' '}
-              <a href="https://www.newline.co/courses/build-a-spotify-connected-app">
-                launched a course
-              </a>{' '}
-              that covers everything you need to build a web app with the Spotify API using Node
-              &amp; React.
+              <span role="img" aria-label="camera">
+                📸
+              </span>{' '}
+              When I'm not coding, you'll probably find me out taking photos, doing basketball, or
+              wrestling with my self-hosted server.
             </p>
-
-            <p>Here are a few technologies I’ve been working with recently:</p>
           </div>
-
-          <ul className="skills-list">
-            {skills && skills.map((skill, i) => <li key={i}>{skill}</li>)}
-          </ul>
         </StyledText>
 
         <StyledPic>{ProfilePicture}</StyledPic>
