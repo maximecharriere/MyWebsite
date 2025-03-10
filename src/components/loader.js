@@ -29,7 +29,7 @@ const StyledLoader = styled.div`
       margin: 0 auto;
       fill: none;
       user-select: none;
-      #B {
+      path {
         opacity: 0;
       }
     }
@@ -46,14 +46,14 @@ const Loader = ({ finishLoading }) => {
 
     loader
       .add({
-        targets: '#logo path',
+        targets: '#logo polygon',
         delay: 300,
         duration: 1500,
         easing: 'easeInOutQuart',
         strokeDashoffset: [anime.setDashoffset, 0],
       })
       .add({
-        targets: '#logo #B',
+        targets: '#logo path',
         duration: 700,
         easing: 'easeInOutQuart',
         opacity: 1,
