@@ -12,7 +12,7 @@ const StyledProjectsGrid = styled.ul`
 
   a {
     position: relative;
-    z-index: 1;
+    z-index: 2;
   }
 `;
 
@@ -264,34 +264,11 @@ const StyledProject = styled.li`
       &:focus {
         background: transparent;
         outline: 0;
-
-        &:before,
-        .img {
-          background: transparent;
-          filter: none;
-        }
-      }
-
-      &:before {
-        content: '';
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        z-index: 3;
-        transition: var(--transition);
-        background-color: var(--navy);
-        mix-blend-mode: screen;
       }
     }
 
     .img {
       border-radius: var(--border-radius);
-      mix-blend-mode: multiply;
-      filter: grayscale(100%) contrast(1) brightness(90%);
 
       @media (max-width: 768px) {
         object-fit: cover;
@@ -307,8 +284,11 @@ const Featured = () => {
   const data = useStaticQuery(graphql`
     {
       featured: allMarkdownRemark(
-        filter: { fileAbsolutePath: { regex: "/content/featured/" } }
-        sort: { fields: [frontmatter___date], order: ASC }
+        filter: {
+          fileAbsolutePath: { regex: "/content/projects/" }
+          frontmatter: { featuredPosition: { gt: 0 } }
+        }
+        sort: { fields: [frontmatter___featuredPosition], order: ASC }
       ) {
         edges {
           node {
@@ -320,6 +300,9 @@ const Featured = () => {
                 }
               }
               tech
+              android
+              ios
+              subtitle
               github
               external
               cta
@@ -355,17 +338,35 @@ const Featured = () => {
         {featuredProjects &&
           featuredProjects.map(({ node }, i) => {
             const { frontmatter, html } = node;
-            const { external, title, tech, github, cover, cta } = frontmatter;
+            const {
+              external,
+              title,
+              subtitle,
+              tech,
+              android,
+              ios,
+              github,
+              cover,
+              cta,
+            } = frontmatter;
             const image = getImage(cover);
-
+            const projectLink = external
+              ? external
+              : github
+                ? github
+                : android
+                  ? android
+                  : ios
+                    ? ios
+                    : '#';
             return (
               <StyledProject key={i} ref={el => (revealProjects.current[i] = el)}>
                 <div className="project-content">
                   <div>
-                    <p className="project-overline">Featured Project</p>
+                    <p className="project-overline">{subtitle}</p>
 
                     <h3 className="project-title">
-                      <a href={external}>{title}</a>
+                      <a href={projectLink}>{title}</a>
                     </h3>
 
                     <div
@@ -387,6 +388,16 @@ const Featured = () => {
                           Learn More
                         </a>
                       )}
+                      {ios && (
+                        <a href={ios} aria-label="Appstore Link">
+                          <Icon name="AppStore" />
+                        </a>
+                      )}
+                      {android && (
+                        <a href={android} aria-label="Playstore Link">
+                          <Icon name="PlayStore" />
+                        </a>
+                      )}
                       {github && (
                         <a href={github} aria-label="GitHub Link">
                           <Icon name="GitHub" />
@@ -400,9 +411,8 @@ const Featured = () => {
                     </div>
                   </div>
                 </div>
-
                 <div className="project-image">
-                  <a href={external ? external : github ? github : '#'}>
+                  <a href={projectLink}>
                     <GatsbyImage image={image} alt={title} className="img" />
                   </a>
                 </div>
