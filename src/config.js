@@ -14,10 +14,6 @@ module.exports = {
       name: 'Instagram',
       url: 'https://www.instagram.com/maximecharriere',
     },
-    {
-      name: 'Twitter',
-      url: 'https://twitter.com/maximecharriere',
-    },
   ],
 
   navLinks: [
@@ -30,7 +26,7 @@ module.exports = {
       url: '/#jobs',
     },
     {
-      name: 'Work',
+      name: 'Projects',
       url: '/#projects',
     },
     {
