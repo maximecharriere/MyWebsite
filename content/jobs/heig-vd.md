@@ -17,4 +17,4 @@ url: 'https://heig-vd.ch/recherche/instituts/iai/'
 ##### Academic Assistant
 
 - Teaching to bachelor students C, C++, Industrial Vision, and Git.
-- Supervised bachelor’s theses.$
+- Supervised bachelor’s theses.

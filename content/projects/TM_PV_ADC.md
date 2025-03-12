@@ -19,6 +19,6 @@ showInProjects: true
 featuredPosition: 2
 ---
 
-I had the privilege of working with [Prof. Dr. Christof Bucher](https://www.bfh.ch/de/ueber-die-bfh/personen/ex7zuvhopjuh/) in BFH's [Laboratory for Photovoltaic Systems](https://www.bfh.ch/en/research/research-areas/laboratory-photovoltaic-systems/) for my Master Thesis, on data provided by [PRiOT](https://www.priot.ch/)
+I had the privilege of working with [Prof. Dr. Christof Bucher](https://www.bfh.ch/de/ueber-die-bfh/personen/ex7zuvhopjuh/) in BFH's [Laboratory for Photovoltaic Systems](https://www.bfh.ch/en/research/research-areas/laboratory-photovoltaic-systems/) for my Master Thesis, on data provided by [PRiOT](https://www.priot.ch/).
 
-I developed an AI-based data analysis algorithm in Python, to detect and classify anomalies in PV systems, using an innovative strategy leveraging data from neighboring PV systems.
+I developed an AI-based data analysis algorithm in Python, to detect and classify anomalies in PV systems, using an innovative strategy leveraging production data from neighboring PV systems.

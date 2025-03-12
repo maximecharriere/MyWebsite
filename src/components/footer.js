@@ -44,10 +44,6 @@ const StyledCredit = styled.div`
   font-family: var(--font-mono);
   font-size: var(--fz-xxs);
   line-height: 1;
-
-  a {
-    padding: 10px;
-  }
 `;
 
 const Footer = () => (
@@ -72,8 +68,8 @@ const Footer = () => (
 
     <StyledCredit tabindex="-1">
       <div>
-        <a href="https://brittanychiang.com/">Designed by Brittany Chiang</a>&amp;
-        <a href="/">Built by Maxime Charrière</a>
+        <a href="/">Built by Maxime Charrière</a>&nbsp;&amp;&nbsp;
+        <a href="https://brittanychiang.com/">Designed by Brittany Chiang</a>
       </div>
     </StyledCredit>
   </StyledFooter>

@@ -17,6 +17,7 @@ tech:
   - libSodium
   - MongoDB
   - Docusaurus
+  - CMake
   - CI/CD
 company: 'HEIG-VD'
 showInProjects: true
