@@ -3,6 +3,7 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import styled from 'styled-components';
 import { navDelay, loaderDelay } from '@utils';
 import { usePrefersReducedMotion } from '@hooks';
+import { ReactTyped } from 'react-typed';
 
 const StyledHeroSection = styled.section`
   ${({ theme }) => theme.mixins.flexCenter};
@@ -59,7 +60,21 @@ const Hero = () => {
     return () => clearTimeout(timeout);
   }, []);
 
-  const one = <h1>Hi, my name is</h1>;
+  const one = (
+    <h1>
+      &gt;{' '}
+      <ReactTyped
+        strings={['Hi, my name is']}
+        typeSpeed={100}
+        backSpeed={10}
+        showCursor={true}
+        cursorChar="|"
+        startWhenVisible={true}
+        backDelay={1000}
+        loop
+      />
+    </h1>
+  );
   const two = <h2 className="big-heading">Maxime Charrière</h2>;
   const three = <h3 className="big-heading">I build technology for climate</h3>;
   const four = (
