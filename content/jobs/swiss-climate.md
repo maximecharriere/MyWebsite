@@ -1,6 +1,6 @@
 ---
 date: '2024-12-31'
-title: 'R&D Software Engineer in Sustainable Reporting'
+title: 'R&D Software Engineer for CO₂ Calculations'
 company: 'Swiss Climate'
 location: 'Bern, CH'
 range: 'Sept - December 2024'

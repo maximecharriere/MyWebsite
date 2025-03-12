@@ -6,7 +6,7 @@ const IconHex = () => (
     <polygon
       id="Shape"
       stroke="currentColor"
-      strokeWidth="2"
+      strokeWidth="1"
       strokeLinecap="round"
       strokeLinejoin="round"
       points="2.9 47.5 24.9 86.5 69.9 86.5 92.9 47.5 70.9 8.5 25.9 8.5 2.9 47.5"

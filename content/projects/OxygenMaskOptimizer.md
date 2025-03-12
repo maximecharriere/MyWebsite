@@ -18,7 +18,7 @@ tech:
   - MongoDB
   - Docusaurus
   - CMake
-  - CI/CD
+  - Gitlab CI/CD
 company: 'HEIG-VD'
 showInProjects: true
 featuredPosition: 1
