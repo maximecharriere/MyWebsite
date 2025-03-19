@@ -123,7 +123,7 @@ const About = () => {
       <div className="pp-container">
         <StaticImage
           className="img"
-          src="../../images/me.png"
+          src="../../images/me-500.png"
           width={500}
           quality={95}
           formats={['AUTO', 'WEBP', 'AVIF']}
