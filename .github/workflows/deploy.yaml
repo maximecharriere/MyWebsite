@@ -17,14 +17,6 @@ jobs:
           node-version-file: '.nvmrc'
           cache: 'yarn'
 
-      - name: Setup Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '2.x'
-          
-      - name: Make proxy script executable
-        run: chmod +x ${{github.workspace}}/.github/ssh-sni-proxy-command.py
-
       # Cache Gatsby cache folder
       - name: Cache Gatsby
         uses: actions/cache@v3
@@ -53,4 +45,3 @@ jobs:
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
           SOURCE: "public/"
           TARGET: ${{ secrets.REMOTE_PATH }}
-          SSH_CMD_ARGS: "-o ProxyCommand='${{github.workspace}}/.github/ssh-sni-proxy-command.py %h %p'"
