@@ -12,7 +12,8 @@ const StyledContent = styled.div`
 
 const Layout = ({ children, location }) => {
   const isHome = location.pathname === '/';
-  const [isLoading, setIsLoading] = useState(isHome);
+  const isDev = process.env.NODE_ENV === 'development';
+  const [isLoading, setIsLoading] = useState(isHome && !isDev);
 
   // Sets target="_blank" rel="noopener noreferrer" on external links
   const handleExternalLinks = () => {
