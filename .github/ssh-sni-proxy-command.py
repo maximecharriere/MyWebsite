@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
 
 # HTTP Host header for SSH through use of ProxyCommand
 # Copyright (C) 2016  Kasper Dupont
