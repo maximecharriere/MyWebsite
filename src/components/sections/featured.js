@@ -42,7 +42,19 @@ const StyledProject = styled.li`
   &:nth-of-type(odd) {
     .project-content {
       grid-column: 7 / -1;
+      grid-row: 1 / -1;
       text-align: right;
+
+      display: grid;
+      grid-template-columns: subgrid;
+
+      & > * {
+        grid-column: 2 / -1;
+      }
+
+      .project-description {
+        grid-column: 1 / -1;
+      }
 
       @media (max-width: 1080px) {
         grid-column: 5 / -1;
@@ -95,6 +107,16 @@ const StyledProject = styled.li`
     position: relative;
     grid-column: 1 / 7;
     grid-row: 1 / -1;
+    display: grid;
+    grid-template-columns: subgrid;
+
+    & > * {
+      grid-column: 1 / 6;
+    }
+
+    .project-description {
+      grid-column: 1 / 7;
+    }
 
     @media (max-width: 1080px) {
       grid-column: 1 / 9;
@@ -362,55 +384,51 @@ const Featured = () => {
             return (
               <StyledProject key={i} ref={el => (revealProjects.current[i] = el)}>
                 <div className="project-content">
-                  <div>
-                    <p className="project-overline">{subtitle}</p>
+                  <p className="project-overline">{subtitle}</p>
 
-                    <h3 className="project-title">
-                      <a href={projectLink}>{title}</a>
-                    </h3>
+                  <h3 className="project-title">
+                    <a href={projectLink}>{title}</a>
+                  </h3>
 
-                    <div
-                      className="project-description"
-                      dangerouslySetInnerHTML={{ __html: html }}
-                    />
+                  <div className="project-description" dangerouslySetInnerHTML={{ __html: html }} />
 
-                    {tech.length && (
-                      <ul className="project-tech-list">
-                        {tech.map((tech, i) => (
-                          <li key={i}>{tech}</li>
-                        ))}
-                      </ul>
+                  {tech.length && (
+                    <ul className="project-tech-list">
+                      {tech.map((tech, i) => (
+                        <li key={i}>{tech}</li>
+                      ))}
+                    </ul>
+                  )}
+
+                  <div className="project-links">
+                    {cta && (
+                      <a href={cta} aria-label="Course Link" className="cta">
+                        Learn More
+                      </a>
                     )}
-
-                    <div className="project-links">
-                      {cta && (
-                        <a href={cta} aria-label="Course Link" className="cta">
-                          Learn More
-                        </a>
-                      )}
-                      {ios && (
-                        <a href={ios} aria-label="Appstore Link">
-                          <Icon name="AppStore" />
-                        </a>
-                      )}
-                      {android && (
-                        <a href={android} aria-label="Playstore Link">
-                          <Icon name="PlayStore" />
-                        </a>
-                      )}
-                      {github && (
-                        <a href={github} aria-label="GitHub Link">
-                          <Icon name="GitHub" />
-                        </a>
-                      )}
-                      {external && !cta && (
-                        <a href={external} aria-label="External Link" className="external">
-                          <Icon name="External" />
-                        </a>
-                      )}
-                    </div>
+                    {ios && (
+                      <a href={ios} aria-label="Appstore Link">
+                        <Icon name="AppStore" />
+                      </a>
+                    )}
+                    {android && (
+                      <a href={android} aria-label="Playstore Link">
+                        <Icon name="PlayStore" />
+                      </a>
+                    )}
+                    {github && (
+                      <a href={github} aria-label="GitHub Link">
+                        <Icon name="GitHub" />
+                      </a>
+                    )}
+                    {external && !cta && (
+                      <a href={external} aria-label="External Link" className="external">
+                        <Icon name="External" />
+                      </a>
+                    )}
                   </div>
                 </div>
+
                 <div className="project-image">
                   <a href={projectLink}>
                     <GatsbyImage image={image} alt={title} className="img" />
