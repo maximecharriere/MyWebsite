@@ -1,9 +1,9 @@
 ---
-date: '2024-12-31'
+date: '2022-08-31'
 title: 'Oxygen Mask Optimizer'
 subtitle: 'Research & Development'
 cover: './images/OxygenMaskOptimizer.jpg'
-github: ''
+github: 'https://github.com/heig-vd-iai/106507-IA4FlightHelmet'
 external: 'https://heig-vd.ch/recherche/instituts/iai/'
 ios: ''
 android: ''
@@ -17,9 +17,11 @@ tech:
   - libSodium
   - MongoDB
   - Docusaurus
+  - VTK
   - CMake
+  - API
   - Gitlab CI/CD
-company: 'HEIG-VD'
+company: 'HEIG-VD iAi'
 showInProjects: true
 featuredPosition: 1
 ---

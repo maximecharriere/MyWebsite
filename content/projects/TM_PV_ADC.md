@@ -1,19 +1,19 @@
 ---
 date: '2024-08-28'
-title: 'Anomaly Detection and Classification for Photovoltaic Systems'
+title: 'AI-based Anomaly Detection for Photovoltaic Systems'
 subtitle: 'Master Thesis'
-cover: './images/TM_PV_ADC.jpg'
+cover: './images/TM_PV_ADC_illustration.jpg'
 github: 'https://github.com/maximecharriere/TM_PV_ADC'
 external: 'https://maximecharriere.github.io/TM_PV_ADC/'
 ios: ''
 android: ''
 cta: ''
 tech:
+  - Photovoltaic
   - Python
   - SK-Learn
   - PVLib
   - SQL
-  - CI/CD
 company: 'BFH × PRiOT AG'
 showInProjects: true
 featuredPosition: 2

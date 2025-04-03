@@ -1,15 +1,19 @@
 ---
-date: '2015-12-31'
-title: 'Home Server'
+date: '2019-12-31'
+title: 'Self-hosted Server'
 subtitle: ''
-cover: './images/OxygenMaskOptimizer.jpg'
+cover: ''
 github: ''
 external: ''
 ios: ''
 android: ''
 cta: ''
 tech:
-company: ''
-showInProjects: false
+  - Docker
+  - Hugging Face
+  - Arr* Stack
+  - Synology
+company: 'Home'
+showInProjects: true
 featuredPosition: 0
 ---

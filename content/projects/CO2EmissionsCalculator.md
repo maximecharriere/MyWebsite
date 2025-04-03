@@ -2,7 +2,7 @@
 date: '2024-12-31'
 title: 'CO₂ Emissions Calculator for buildings'
 subtitle: ''
-cover: './images/TB_AIDrivenAutonomousCar.jpg'
+cover: ''
 github: ''
 external: 'https://www.swissclimate.ch/'
 ios: ''
