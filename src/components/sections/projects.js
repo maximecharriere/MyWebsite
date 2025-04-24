@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Link, useStaticQuery, graphql } from 'gatsby';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import React, { useEffect, useRef } from 'react';
+import { useStaticQuery, graphql } from 'gatsby';
 import styled from 'styled-components';
 import { srConfig } from '@config';
 import sr from '@utils/sr';
@@ -11,30 +10,12 @@ const StyledProjectsSection = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 0;
+  margin: 0;
+  max-width: 100%;
 
   h2 {
     font-size: clamp(24px, 5vw, var(--fz-heading));
-  }
-
-  .archive-link {
-    font-family: var(--font-mono);
-    font-size: var(--fz-sm);
-    &:after {
-      bottom: 0.1em;
-    }
-  }
-
-  .projects-grid {
-    ${({ theme }) => theme.mixins.resetList};
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    grid-gap: 15px;
-    position: relative;
-    margin-top: 50px;
-
-    @media (max-width: 1080px) {
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    }
   }
 
   .more-button {
@@ -43,123 +24,121 @@ const StyledProjectsSection = styled.section`
   }
 `;
 
-const StyledProject = styled.li`
-  position: relative;
-  cursor: default;
-  transition: var(--transition);
+const StyledTableContainer = styled.div`
+  margin: 20px -50px;
 
-  @media (prefers-reduced-motion: no-preference) {
-    &:hover,
-    &:focus-within {
-      .project-inner {
-        transform: translateY(-7px);
+  @media (max-width: 768px) {
+    margin: 50px -10px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+
+    .hide-on-mobile {
+      @media (max-width: 768px) {
+        display: none;
       }
     }
-  }
 
-  a {
-    position: relative;
-    z-index: 1;
-  }
+    tbody tr {
+      &:hover,
+      &:focus {
+        background-color: var(--light-navy);
+      }
+    }
 
-  .project-inner {
-    ${({ theme }) => theme.mixins.boxShadow};
-    ${({ theme }) => theme.mixins.flexBetween};
-    flex-direction: column;
-    align-items: flex-start;
-    position: relative;
-    height: 100%;
-    padding: 2rem 1.75rem;
-    border-radius: var(--border-radius);
-    background-color: var(--light-navy);
-    transition: var(--transition);
-    overflow: auto;
-  }
+    th,
+    td {
+      padding: 10px;
+      text-align: left;
 
-  .project-top {
-    ${({ theme }) => theme.mixins.flexBetween};
-    margin-bottom: 35px;
+      &:first-child {
+        padding-left: 20px;
 
-    .folder {
-      color: var(--green);
+        @media (max-width: 768px) {
+          padding-left: 10px;
+        }
+      }
+      &:last-child {
+        padding-right: 20px;
+
+        @media (max-width: 768px) {
+          padding-right: 10px;
+        }
+      }
+
       svg {
-        width: 40px;
-        height: 40px;
+        width: 20px;
+        height: 20px;
       }
     }
 
-    .project-links {
-      display: flex;
-      align-items: center;
-      margin-right: -10px;
-      color: var(--light-slate);
+    tr {
+      cursor: default;
 
-      a {
-        ${({ theme }) => theme.mixins.flexCenter};
-        padding: 5px 7px;
+      td:first-child {
+        border-top-left-radius: var(--border-radius);
+        border-bottom-left-radius: var(--border-radius);
+      }
+      td:last-child {
+        border-top-right-radius: var(--border-radius);
+        border-bottom-right-radius: var(--border-radius);
+      }
+    }
 
-        &.external {
-          svg {
-            width: 22px;
-            height: 22px;
-            margin-top: -4px;
+    td {
+      &.year {
+        padding-right: 20px;
+
+        @media (max-width: 768px) {
+          padding-right: 10px;
+          font-size: var(--fz-sm);
+        }
+      }
+
+      &.title {
+        padding-top: 15px;
+        padding-right: 20px;
+        color: var(--lightest-slate);
+        font-size: var(--fz-xl);
+        font-weight: 600;
+        line-height: 1.25;
+      }
+
+      &.company {
+        font-size: var(--fz-lg);
+        white-space: nowrap;
+      }
+
+      &.tech {
+        font-size: var(--fz-xxs);
+        font-family: var(--font-mono);
+        line-height: 1.5;
+        .separator {
+          margin: 0 5px;
+        }
+        span {
+          display: inline-block;
+        }
+      }
+
+      &.links {
+        min-width: 100px;
+
+        div {
+          display: flex;
+          align-items: center;
+
+          a {
+            ${({ theme }) => theme.mixins.flexCenter};
+            flex-shrink: 0;
+          }
+
+          a + a {
+            margin-left: 10px;
           }
         }
-
-        svg {
-          width: 20px;
-          height: 20px;
-        }
-      }
-    }
-  }
-
-  .project-title {
-    margin: 0 0 10px;
-    color: var(--lightest-slate);
-    font-size: var(--fz-xxl);
-
-    a {
-      position: static;
-
-      &:before {
-        content: '';
-        display: block;
-        position: absolute;
-        z-index: 0;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-      }
-    }
-  }
-
-  .project-description {
-    color: var(--light-slate);
-    font-size: 17px;
-
-    a {
-      ${({ theme }) => theme.mixins.inlineLink};
-    }
-  }
-
-  .project-tech-list {
-    display: flex;
-    align-items: flex-end;
-    flex-grow: 1;
-    flex-wrap: wrap;
-    padding: 0;
-    margin: 20px 0 0 0;
-    list-style: none;
-
-    li {
-      font-family: var(--font-mono);
-      font-size: var(--fz-xxs);
-      line-height: 1.75;
-
-      &:not(:last-of-type) {
-        margin-right: 15px;
       }
     }
   }
@@ -178,10 +157,14 @@ const Projects = () => {
         edges {
           node {
             frontmatter {
-              title
-              tech
+              date
               github
               external
+              ios
+              android
+              title
+              tech
+              company
             }
             html
           }
@@ -190,9 +173,9 @@ const Projects = () => {
     }
   `);
 
-  const [showMore, setShowMore] = useState(false);
+  const projects = data.projects.edges.filter(({ node }) => node);
   const revealTitle = useRef(null);
-  const revealArchiveLink = useRef(null);
+  const revealTable = useRef(null);
   const revealProjects = useRef([]);
   const prefersReducedMotion = usePrefersReducedMotion();
 
@@ -202,109 +185,89 @@ const Projects = () => {
     }
 
     sr.reveal(revealTitle.current, srConfig());
-    sr.reveal(revealArchiveLink.current, srConfig());
-    revealProjects.current.forEach((ref, i) => sr.reveal(ref, srConfig(i * 100)));
+    sr.reveal(revealTable.current, srConfig(200, 0));
+    revealProjects.current.forEach((ref, i) => sr.reveal(ref, srConfig(i * 10)));
   }, []);
-
-  const GRID_LIMIT = 6;
-  const projects = data.projects.edges.filter(({ node }) => node);
-  const firstSix = projects.slice(0, GRID_LIMIT);
-  const projectsToShow = showMore ? projects : firstSix;
-
-  const projectInner = node => {
-    const { frontmatter, html } = node;
-    const { github, external, title, tech } = frontmatter;
-
-    return (
-      <div className="project-inner">
-        <header>
-          <div className="project-top">
-            <div className="folder">
-              <Icon name="Folder" />
-            </div>
-            <div className="project-links">
-              {github && (
-                <a href={github} aria-label="GitHub Link" target="_blank" rel="noreferrer">
-                  <Icon name="GitHub" />
-                </a>
-              )}
-              {external && (
-                <a
-                  href={external}
-                  aria-label="External Link"
-                  className="external"
-                  target="_blank"
-                  rel="noreferrer">
-                  <Icon name="External" />
-                </a>
-              )}
-            </div>
-          </div>
-
-          <h3 className="project-title">
-            <a href={external} target="_blank" rel="noreferrer">
-              {title}
-            </a>
-          </h3>
-
-          <div className="project-description" dangerouslySetInnerHTML={{ __html: html }} />
-        </header>
-
-        <footer>
-          {tech && (
-            <ul className="project-tech-list">
-              {tech.map((tech, i) => (
-                <li key={i}>{tech}</li>
-              ))}
-            </ul>
-          )}
-        </footer>
-      </div>
-    );
-  };
 
   return (
     <StyledProjectsSection>
-      <h2 ref={revealTitle}>Other Noteworthy Projects</h2>
+      <h2 ref={revealTitle}>All my Projects</h2>
 
-      <Link className="inline-link archive-link" to="/archive" ref={revealArchiveLink}>
-        view the archive
-      </Link>
+      <StyledTableContainer ref={revealTable}>
+        <table>
+          <thead>
+            <tr>
+              <th>Year</th>
+              <th>Title</th>
+              <th className="hide-on-mobile">Made at</th>
+              <th className="hide-on-mobile">Built with</th>
+              <th>Link</th>
+            </tr>
+          </thead>
+          <tbody>
+            {projects.length > 0 &&
+              projects.map(({ node }, i) => {
+                const {
+                  date,
+                  github,
+                  external,
+                  ios,
+                  android,
+                  title,
+                  tech,
+                  company,
+                } = node.frontmatter;
+                return (
+                  <tr key={i} ref={el => (revealProjects.current[i] = el)}>
+                    <td className="overline year">{`${new Date(date).getFullYear()}`}</td>
 
-      <ul className="projects-grid">
-        {prefersReducedMotion ? (
-          <>
-            {projectsToShow &&
-              projectsToShow.map(({ node }, i) => (
-                <StyledProject key={i}>{projectInner(node)}</StyledProject>
-              ))}
-          </>
-        ) : (
-          <TransitionGroup component={null}>
-            {projectsToShow &&
-              projectsToShow.map(({ node }, i) => (
-                <CSSTransition
-                  key={i}
-                  classNames="fadeup"
-                  timeout={i >= GRID_LIMIT ? (i - GRID_LIMIT) * 300 : 300}
-                  exit={false}>
-                  <StyledProject
-                    key={i}
-                    ref={el => (revealProjects.current[i] = el)}
-                    style={{
-                      transitionDelay: `${i >= GRID_LIMIT ? (i - GRID_LIMIT) * 100 : 0}ms`,
-                    }}>
-                    {projectInner(node)}
-                  </StyledProject>
-                </CSSTransition>
-              ))}
-          </TransitionGroup>
-        )}
-      </ul>
+                    <td className="title">{title}</td>
 
-      <button className="more-button" onClick={() => setShowMore(!showMore)}>
-        Show {showMore ? 'Less' : 'More'}
-      </button>
+                    <td className="company hide-on-mobile">
+                      {company ? <span>{company}</span> : <span>—</span>}
+                    </td>
+
+                    <td className="tech hide-on-mobile">
+                      {tech?.length > 0 &&
+                        tech.map((item, i) => (
+                          <span key={i}>
+                            {item}
+                            {''}
+                            {i !== tech.length - 1 && <span className="separator">&middot;</span>}
+                          </span>
+                        ))}
+                    </td>
+
+                    <td className="links">
+                      <div>
+                        {external && (
+                          <a href={external} aria-label="External Link">
+                            <Icon name="External" />
+                          </a>
+                        )}
+                        {github && (
+                          <a href={github} aria-label="GitHub Link">
+                            <Icon name="GitHub" />
+                          </a>
+                        )}
+                        {ios && (
+                          <a href={ios} aria-label="Apple App Store Link">
+                            <Icon name="AppStore" />
+                          </a>
+                        )}
+                        {android && (
+                          <a href={android} aria-label="Google Play Store Link">
+                            <Icon name="PlayStore" />
+                          </a>
+                        )}
+                      </div>
+                    </td>
+                  </tr>
+                );
+              })}
+          </tbody>
+        </table>
+      </StyledTableContainer>
     </StyledProjectsSection>
   );
 };
