@@ -10,7 +10,7 @@ url: 'https://heig-vd.ch/recherche/instituts/iai/'
 
 ##### R&D Software Engineer
 
-- Developed a 3D algorithm in C++ to find the best oxygen mask fitting to a 3D scan of the user’s face, to reduce pain and leaks. I managed this 300K CHF InnoSuisse Project and customer relations.
+- Managed a 300K CHF InnoSuisse Project and customer relations. I developed a 3D algorithm in C++ to find the best oxygen mask fitting to a 3D scan of the user’s face, to reduce pain and leaks.
 - Developed an eye reaction analysis application in C# / WPF, assisting the medical practitioner with live image analysis of eyes reacting to different light frequencies and intensities.
 - Developed an image analysis algorithm in Python, detecting foreign body in medical vials for quality controls.
 
