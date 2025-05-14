@@ -8,4 +8,5 @@ type: 'Internship'
 url: 'https://watch-web.ch/fournisseur-horloger/schmid-machines-sa'
 ---
 
-- Upgrading of screen printing machines to current automation standards, installation throughout Europe for international customers, and training customers in machine operation.
+- Software development on PLC.
+- Installation of machines throughout Europe and training of customers in machine operation.

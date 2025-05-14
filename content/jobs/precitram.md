@@ -8,4 +8,4 @@ type: 'Full-time'
 url: 'https://precitrame.com/'
 ---
 
-- Assembled mechanical/pneumatic/electrical parts of CNC's during the summer holidays to gain experience and income.
+- Assembly of mechanical, pneumatic, electrical parts on CNC machines, and troubleshooting.

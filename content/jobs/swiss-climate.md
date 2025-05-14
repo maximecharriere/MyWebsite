@@ -9,4 +9,4 @@ url: 'https://www.swissclimate.ch/'
 ---
 
 - First freelance experience on a 10K CHF contract.
-- Developed a CO₂ Emissions Calculator for buildings in R, helping sustainability reporting of companies in the real estate sector.
+- Developed an automatic CO₂ Emissions Calculator for buildings in R, helping sustainability reporting of companies in the real estate sector.
