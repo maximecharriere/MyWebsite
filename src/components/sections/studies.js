@@ -6,8 +6,9 @@ import { srConfig } from '@config';
 import { KEY_CODES } from '@utils';
 import sr from '@utils/sr';
 import { usePrefersReducedMotion } from '@hooks';
+import { Icon } from '@components/icons';
 
-const StyledJobsSection = styled.section`
+const StyledStudiesSection = styled.section`
   .inner {
     display: flex;
 
@@ -149,7 +150,7 @@ const StyledTabPanel = styled.div`
     font-weight: 500;
     line-height: 1.3;
 
-    .company {
+    .school {
       color: var(--green);
     }
   }
@@ -171,18 +172,41 @@ const StyledTabPanel = styled.div`
   }
 `;
 
-const Jobs = () => {
+const StyledCurriculumLink = styled.div`
+  margin-top: 10px;
+  margin-bottom: 15px;
+
+  a {
+    .link-content {
+      display: flex;
+      align-items: center;
+    }
+
+    svg {
+      width: 20px;
+      height: 20px;
+      margin-right: 10px;
+    }
+
+    span {
+      line-height: 1;
+    }
+  }
+`;
+
+const Studies = () => {
   const data = useStaticQuery(graphql`
     query {
-      jobs: allMarkdownRemark(
-        filter: { fileAbsolutePath: { regex: "/content/jobs/" } }
+      studies: allMarkdownRemark(
+        filter: { fileAbsolutePath: { regex: "/content/studies/" } }
         sort: { fields: [frontmatter___date], order: DESC }
       ) {
         edges {
           node {
             frontmatter {
               title
-              company
+              subtitle
+              school
               location
               range
               type
@@ -195,7 +219,7 @@ const Jobs = () => {
     }
   `);
 
-  const jobsData = data.jobs.edges;
+  const studiesData = data.studies.edges;
 
   const [activeTabId, setActiveTabId] = useState(0);
   const [tabFocus, setTabFocus] = useState(null);
@@ -251,14 +275,14 @@ const Jobs = () => {
   };
 
   return (
-    <StyledJobsSection id="jobs" ref={revealContainer}>
-      <h2 className="numbered-heading">Where I’ve Worked</h2>
+    <StyledStudiesSection id="studies" ref={revealContainer}>
+      <h2 className="numbered-heading">What I've Studied</h2>
 
       <div className="inner">
-        <StyledTabList role="tablist" aria-label="Job tabs" onKeyDown={e => onKeyDown(e)}>
-          {jobsData &&
-            jobsData.map(({ node }, i) => {
-              const { company } = node.frontmatter;
+        <StyledTabList role="tablist" aria-label="Study tabs" onKeyDown={e => onKeyDown(e)}>
+          {studiesData &&
+            studiesData.map(({ node }, i) => {
+              const { title } = node.frontmatter;
               return (
                 <StyledTabButton
                   key={i}
@@ -270,7 +294,7 @@ const Jobs = () => {
                   tabIndex={activeTabId === i ? '0' : '-1'}
                   aria-selected={activeTabId === i ? true : false}
                   aria-controls={`panel-${i}`}>
-                  <span>{company}</span>
+                  <span>{title}</span>
                 </StyledTabButton>
               );
             })}
@@ -278,10 +302,10 @@ const Jobs = () => {
         </StyledTabList>
 
         <StyledTabPanels>
-          {jobsData &&
-            jobsData.map(({ node }, i) => {
+          {studiesData &&
+            studiesData.map(({ node }, i) => {
               const { frontmatter, html } = node;
-              const { title, url, company, range, type } = frontmatter;
+              const { title, subtitle, url, school, range, type } = frontmatter;
 
               return (
                 <CSSTransition key={i} in={activeTabId === i} timeout={250} classNames="fade">
@@ -294,18 +318,35 @@ const Jobs = () => {
                     hidden={activeTabId !== i}>
                     <h3>
                       <span>{title}</span>
-                      <span className="company">
+                      <span className="school">
                         &nbsp;
                         <a href={url} className="inline-link">
-                          @&nbsp;{company}
+                          @&nbsp;{school}
                         </a>
                       </span>
+                      {subtitle && (
+                        <span className="subheading">
+                          <br />
+                          {subtitle}
+                        </span>
+                      )}
                     </h3>
 
                     <div className="subheading">
                       <span className="range">{range}</span>
                       <span className="type">{type}</span>
                     </div>
+
+                    <StyledCurriculumLink>
+                      {url && (
+                        <a className="inline-link" href={url} aria-label="External Link">
+                          <div className="link-content">
+                            <Icon name="External" />
+                            <span>See Curriculum</span>
+                          </div>
+                        </a>
+                      )}
+                    </StyledCurriculumLink>
 
                     <div dangerouslySetInnerHTML={{ __html: html }} />
                   </StyledTabPanel>
@@ -314,8 +355,8 @@ const Jobs = () => {
             })}
         </StyledTabPanels>
       </div>
-    </StyledJobsSection>
+    </StyledStudiesSection>
   );
 };
 
-export default Jobs;
+export default Studies;

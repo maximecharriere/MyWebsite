@@ -7,8 +7,6 @@ import { usePrefersReducedMotion } from '@hooks';
 import { IconHex } from '@components/icons';
 
 const StyledAboutSection = styled.section`
-  max-width: 900px;
-
   .inner {
     display: grid;
     grid-template-columns: 3fr 2fr;
