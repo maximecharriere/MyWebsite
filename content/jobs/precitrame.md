@@ -1,7 +1,7 @@
 ---
 date: '2019-09-31'
 title: 'Automation Technician'
-company: 'Precitram'
+company: 'Precitrame'
 location: 'Tramelan, CH'
 range: 'Jul - Sept 2019'
 type: 'Full-time'
